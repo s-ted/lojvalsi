@@ -1,0 +1,51 @@
+<div>
+
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <input type="search" results="5" class="form-control"
+      tabindex="1"
+      placeholder=".i ko vi cuska lo do sisku"
+      ng-model="input" />
+    </div>
+    <div class="btn-group btn-group-lg btn-group-justified">
+      <a class="btn btn-primary"
+        tabindex="2"
+        href="#/translate/jbo/en/{{input}}">
+        jbo→en
+      </a>
+      <a class="btn btn-default"
+        tabindex="3"
+        href="#/translate/en/jbo/{{input}}">
+        en→jbo
+      </a>
+    </div>
+  </form>
+
+  <br />
+
+  <ol class="breadcrumb">
+    <li ng-repeat="last in $storage.lasts"><a href="{{last.href}}">{{last.label}}</a></li>
+  </ol>
+
+  <div ng-if="results.length == 0" class="alert alert-danger">
+    mi na djuno lo valsi
+  </div>
+
+  <div class="panel panel-dark" ng-repeat="result in results">
+    <div class="panel-heading">
+      <span title="type" class="pull-right">{{result.t}} <i class="small">{{result.s}}</i></span>
+
+      <h1>
+        {{result.v}}
+        <span class="small" style="padding-left: 1em;" ng-repeat="rafsi in result.r">{{rafsi}}</span>
+      </h1>
+    </div>
+
+    <div class="panel-body">
+      <p><ted-parse-definition definition="{{result.d}}"></ted-parse-definition></p>
+
+      <blockquote ng-show="result.n"><p><ted-parse-notes notes="{{result.n}}"></ted-parse-notes></p></blockquote>
+    </div>
+  </div>
+
+</div>
